@@ -1,0 +1,21 @@
+version: '3'
+services:
+  # 'web' is the name of the main service/container
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules
+      - /home/wes/projects/frontend/:/home/node/app wees3985:frontend
+  # this is a second service/container to run tests
+  tests:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /home/node/app/node_modules
+      - /home/wes/projects/frontend/:/home/node/app wees3985:frontend  
+    command: ["npm", "run", "test"]
